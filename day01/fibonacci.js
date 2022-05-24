@@ -1,4 +1,5 @@
 const fibonacci = function(number) {
+    if (number<0) number = -number;
     if(number <= 2) {
         return 1;
     } else {
@@ -6,6 +7,4 @@ const fibonacci = function(number) {
     }
 }
 
-console.log(`Fibonacci of 30 is: ${fibonacci(30)}`);
-
-
+module.exports = fibonacci;
