@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 router.use((req, res, next) => {
-    console.log("middleware inside games router: " + Date.now());
+    console.log("Middleware games router: " + req.method + " " + req.url);
     next();
 });
 

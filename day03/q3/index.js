@@ -5,8 +5,9 @@ const routesOp = require("./routes");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const PUBLIC_FOLDER = process.env.PUBLIC_FOLDER;
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, PUBLIC_FOLDER)));
 
 app.use("/op", routesOp);
 

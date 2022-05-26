@@ -11,10 +11,10 @@ app.use(express.static(path.join(__dirname, PUBLIC_FOLDER)));
 
 app.use("/games", routes);
 
-app.use(function(req, res, next){
-    console.log(`${req.method} ${req.url}`);
-    next();
-});
+// app.use(function(req, res, next){
+//     console.log(`${req.method} ${req.url}`);
+//     next();
+// });
 
 const server = app.listen(PORT, function(err){
     const urlPort = server.address().port;
