@@ -16,8 +16,6 @@ app.use(function(req, res, next){
     next();
 });
 
-
-
 const server = app.listen(PORT, function(err){
     const urlPort = server.address().port;
     console.log(`Listening on port: ${urlPort}`);
