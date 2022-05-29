@@ -15,5 +15,5 @@ app.use(express.static(path.join(__dirname, PUBLIC_FOLDER)));
 app.use(routeGames);
 
 const server = app.listen(PORT, (err) => {
-    console.log(`Listening on port: ${PORT}`);
+    console.log(`Listening on port: ${server.address().port}`);
 });

@@ -1,12 +1,17 @@
 require("dotenv").config();
 const path = require("path");
 const express = require("express");
+const routerGames = require("./api/routes");
+const { ppid } = require("process");
 const app = express();
 
 const PORT = process.env.PORT;
 const PUBLIC_FOLDER = process.env.PUBLIC_FOLDER;
 
 app.use(express.static(path.join(__dirname, PUBLIC_FOLDER)));
+app.use(express.json());
+// app.use(express.urlencoded());
+app.use(routerGames);
 
 const server = app.listen(PORT, (err) => {
     if (err) {
