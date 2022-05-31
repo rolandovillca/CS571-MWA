@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
-const teamsSchema = mongoose.Schema({
+// import mongoose from "mongoose";
+// const { Schema } = mongoose;
+
+const teamSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -13,4 +16,4 @@ const teamsSchema = mongoose.Schema({
     }
 });
 
-mongoose.model("Team", teamsSchema, "teams");
+mongoose.model("Team", teamSchema, "teams");
