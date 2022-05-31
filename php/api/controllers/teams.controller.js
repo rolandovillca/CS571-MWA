@@ -21,18 +21,18 @@ const addOne = (req, res) => {
 }
 
 const deleteOne = function (req, res) {
-    const gameId = req.params.gameId;
-    Game.findByIdAndDelete(gameId).exec(function (err, deletedGame) {
-        const response = { status: 204, message: deletedGame };
+    const teamId = req.params.teamId;
+    Game.findByIdAndDelete(teamId).exec(function (err, deletedTeam) {
+        const response = { status: 204, message: deletedTeam };
         if (err) {
-            console.log("Error finding game");
+            console.log("Error finding team");
             response.status = 500;
             response.message = err;
-        } else if (!deletedGame) {
-            console.log("Game id not found");
+        } else if (!deletedTeam) {
+            console.log("Team id not found");
             response.status = 404;
             response.message = {
-                "message": "Game ID not found"
+                "message": "Team ID not found"
             };
         }
         res.status(response.status).json(response.message);
@@ -40,21 +40,25 @@ const deleteOne = function (req, res) {
 }
 
 const fullUpdateOne = function (req, res) {
-    console.log("Full Update One Game Controller");
-    gameUpdate = function (req, res, game, response) {
-        game.title = req.body.title; game.year = req.body.year; game.rate = req.body.rate;
-        game.price = req.body.price; game.minPlayers = req.body.minPlayers;
-        game.maxPlayers = req.body.maxPlayers; game.minAge = req.body.minAge;
-        game.designers = req.body.designers;
+    console.log("Full Update One Team Controller");
+    teamUpdate = function (req, res, team, response) {
+        team.title = req.body.title; 
+        team.year = req.body.year; 
+        team.rate = req.body.rate;
+        team.price = req.body.price; 
+        team.minPlayers = req.body.minPlayers;
+        team.maxPlayers = req.body.maxPlayers; 
+        team.minAge = req.body.minAge;
+        team.designers = req.body.designers;
         if (req.body.name) {
             console.log("Name passed");
-            game.publisher = { name: req.body.name };
+            team.publisher = { name: req.body.name };
         } else {
             console.log("No Name passed");
-            game.publisher = { name: "NoName" };
+            team.publisher = { name: "NoName" };
         }
-        game.reviews = [];
-        game.save(function (err, updatedGame) {
+        team.reviews = [];
+        team.save(function (err, updatedTeam) {
             if (err) {
                 response.status = 500;
                 response.message = err;
@@ -62,7 +66,7 @@ const fullUpdateOne = function (req, res) {
             res.status(response.status).json(response.message);
         });
     }
-    _updateOne(req, res, gameUpdate);
+    _updateOne(req, res, teamUpdate);
 }
 
 module.exports = {
@@ -70,5 +74,5 @@ module.exports = {
     getOne,
     addOne,
     deleteOne,
-    updateOne
+    fullUpdateOne
 }

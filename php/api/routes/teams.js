@@ -16,6 +16,6 @@ router.route("/teams/add").post(teamsController.addOne);
 
 router.route("/teams/delete/:teamId").delete(teamsController.deleteOne);
 
-router.route("/teams/update/:teamId").put(teamsController.updateOne);
+router.route("/teams/update/:teamId").put(teamsController.fullUpdateOne);
 
 module.exports = router;
