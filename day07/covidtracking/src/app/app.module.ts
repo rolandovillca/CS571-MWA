@@ -7,8 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 
 import { RouterModule } from '@angular/router';
-import { DatacovidComponent } from './datacovid/datacovid.component';
 import { UsersComponent } from './users/users.component';
+import { RandomComponent } from './random/random.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +16,8 @@ import { UsersComponent } from './users/users.component';
     NavigationComponent,
     FooterComponent,
     HomeComponent,
-    DatacovidComponent,
-    UsersComponent
+    UsersComponent,
+    RandomComponent
   ],
   imports: [
     BrowserModule,
