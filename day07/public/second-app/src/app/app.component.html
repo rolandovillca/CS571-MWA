@@ -1,0 +1,38 @@
+{{"Hello Rolando"}}
+<br>
+{{123 | currency:"prefix"}}  // Filters but it is called VIEWS
+<br>
+{{today | date:"short"}}
+<br>
+{{today | date:"medium"}}
+<br>
+{{today | date:"long"}}
+<br>
+{{today | date:"MM-dd-yyyy (hh:mm:ss)"}}
+<br>
+{{today | date:"MM-dd-yyyy (hh:mm:ss 'my any string' )"}}
+
+<br>
+{{students | json}}
+<br>
+{{"Maharishi International University" | uppercase}}
+
+<br>
+{{123.456789 | number:"1.0-5"}}
+
+<br>
+
+<ul>
+<li *ngFor="let name of people">{{name}}</li>
+</ul>
+
+<br>
+
+<button (click)="onClickBtn()">Click</button>
+
+<br>
+
+<select name="" id="">
+  <option value="">Option1</option>
+  <option value="">Option2</option>
+</select>
