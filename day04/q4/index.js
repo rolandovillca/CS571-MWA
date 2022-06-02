@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, PUBLIC_FOLDER)));
 // app.use(express.urlencoded());
 app.use(bodyParser.json()); // NEW ***
 app.use(bodyParser.urlencoded({extended: false})); // NEW ***
-app.use(routerGames);
+app.use("/api", routerGames);
 
 const server = app.listen(PORT, (err) => {
     if (err) {

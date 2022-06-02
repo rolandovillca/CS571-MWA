@@ -42,17 +42,12 @@ const deleteOne = function (req, res) {
 const fullUpdateOne = function (req, res) {
     console.log("Full Update One Team Controller");
     teamUpdate = function (req, res, team, response) {
-        team.title = req.body.title; 
-        team.year = req.body.year; 
-        team.rate = req.body.rate;
-        team.price = req.body.price; 
-        team.minPlayers = req.body.minPlayers;
-        team.maxPlayers = req.body.maxPlayers; 
-        team.minAge = req.body.minAge;
-        team.designers = req.body.designers;
+        team.name = req.body.title; 
+        team.country = req.body.year; 
+        team.createDate = req.body.rate;
         if (req.body.name) {
             console.log("Name passed");
-            team.publisher = { name: req.body.name };
+            team.name = { name: req.body.name };
         } else {
             console.log("No Name passed");
             team.publisher = { name: "NoName" };
