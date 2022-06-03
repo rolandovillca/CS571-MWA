@@ -33,6 +33,10 @@ import { StudentComponent } from './student/student.component';
       {
         path: "students",
         component: StudentComponent
+      },
+      {
+        path: "users",
+        component: UserComponent
       }
     ])
   ],
