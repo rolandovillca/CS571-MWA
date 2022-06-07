@@ -11,7 +11,15 @@ const getAll = (req, res) => {
     if (req.query && req.query.count) {
         count = parseInt(req.query.count, 10);
     }
-    Student.find().exec((err, students) => {
+    if (isNaN(offset) || isNaN(count)) {
+        const msg = "QueryString Offset and Count should be numbers";
+        res.status(400).json({"message": msg})
+    }
+    // Student.find().exec((err, students) => {
+    //     console.log("Found students", students.length);
+    //     res.json(students);
+    // });
+    Student.find().skip(offset).limit(count).exec((err, students)=>{
         console.log("Found students", students.length);
         res.json(students);
     });
@@ -19,12 +27,46 @@ const getAll = (req, res) => {
 
 const getOne = (req, res) => {
     const studentId = req.params.studentId;
-    Student.findById(studentId).exec((err, student) => {
-        res.status(200).json(student);
+    if (studentId) {
+        Student.findById(studentId).exec((err, student) => {
+            const response = {
+                status: 200,
+                message: student
+            }
+            if (err) {
+                console.log("Error finding student");
+                response.status = 500;
+                response.message = err;
+            }
+            res.status(response.status).json(response.message);
+        });
+    }
+}
+
+const addOne = (req, res) => {
+    console.log("Student AddOne request");
+    const newStudent = {
+        name: req.body.name,
+        gpa: req.body.gpa
+    };
+    Student.create(newStudent, (err, student) => {
+        const response = {status: 200, message: student};
+        if (err) {
+            console.log("Error creating student: " + err);
+            response.status = 500;
+            response.message = err;
+        }
+        res.status(response.status).json(response.message);
     });
+}
+
+const deleteOne = (req, res) => {
+    const studentId = req.params
 }
 
 module.exports = {
     getAll,
-    getOne
+    getOne,
+    addOne,
+    deleteOne
 }

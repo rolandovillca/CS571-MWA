@@ -20,11 +20,11 @@ import { StudentComponent } from './student/student.component';
     LoginComponent,
     UserComponent,
     HomeComponent,
-    StudentComponent,
-    HttpClientModule
+    StudentComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: "",

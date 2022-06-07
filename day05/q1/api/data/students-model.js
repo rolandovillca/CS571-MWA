@@ -1,18 +1,15 @@
 const mongoose = require("mongoose");
 
-const studentsSchema = mongoose.Schema({
-    firstName: {
+const studentSchema = mongoose.Schema({
+    name: {
         type: String,
         required: true
     },
-    lastName: {
-        type: String,
-    },
-    age: {
+    gpa: {
         type: Number,
-        min: 15,
-        max: 90
+        min: 1,
+        max: 5
     }
 });
 
-mongoose.model("Student", studentsSchema, "students");
+mongoose.model("Student", studentSchema, "students");

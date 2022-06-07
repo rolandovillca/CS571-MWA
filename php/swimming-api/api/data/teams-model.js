@@ -11,9 +11,18 @@ const teamSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    createdDate: {
-        type: Date
+    creation_year: {
+        type: Number
+    },
+    creation_month: {
+        type: Number
+    },
+    creation_day: {
+        type: Number
+    },
+    members: {
+        type: {}
     }
 });
 
-mongoose.model("Team", teamSchema, "teams");
+mongoose.model(process.env.TEAM_MODEL, teamSchema, "teams");

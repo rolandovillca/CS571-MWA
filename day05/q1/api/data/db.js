@@ -4,7 +4,11 @@ require("./students-model");
 const DB_URL = process.env.DB_URL;
 const DB_NAME = process.env.DB_NAME;
 
-mongoose.connect(DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(DB_URL, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+});
+
 mongoose.connection.on("connected", () => {
     console.log("Mongoose connected to: " + DB_NAME);
 });
