@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">Creation Year</th>
+            <th scope="col">Creation Month</th>
+            <th scope="col">Creation Day</th>
+            <th scope="col">Members</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let team of teams">
+            <!-- <th scope="row">1</th> -->
+            <td>{{team.name}}</td>
+            <td>{{team.country}}</td>
+            <td>{{team.creation_year}}</td>
+            <td>{{team.creation_month}}</td>
+            <td>{{team.creation_day}}</td>
+            <td>{{team.members}}</td>
+            <td><a routerLink="/teams/edit/{{team._id}}">Edit</a> | <a routerLink="/teams/delete/{{team._id}}">Delete</a>
+        </tr>
+    </tbody>
+</table>

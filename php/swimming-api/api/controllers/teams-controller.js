@@ -35,16 +35,24 @@ const getOne = (req, res) => {
 
 const addOne = (req, res) => {
     console.log("Adding team");
+    const newMembers = [];
+    for (const member of req.body.members) {
+        newMembers.push({
+            name: member.name,
+            age: member.age,
+            number_olympic_participation: member.number_olympic_participation
+        });
+    }
     const newTeam = {
         name: req.body.name,
         country: req.body.country,
         creation_year: parseInt(req.body.creation_year),
         creation_month: parseInt(req.body.creation_month),
         creation_day: parseInt(req.body.creation_day),
-        members: {}
+        members: newMembers
     };
     Team.create(newTeam, (err, team) => {
-        const response = { status: 200, message: team};
+        const response = { status: 200, message: team };
         if (err) {
             console.log("Error saving team: " + err);
             response.status = 500;
@@ -77,7 +85,7 @@ const _updateOne = (req, res, updateTeamCallback) => {
     console.log("Update One Team Controller");
     const teamId = req.params.teamId;
     Team.findById(teamId).exec((err, team) => {
-        const response = { status:200, message:team };
+        const response = { status: 200, message: team };
         if (err) {
             console.log("Error finding team");
             response.status = 500;
@@ -95,12 +103,31 @@ const _updateOne = (req, res, updateTeamCallback) => {
 const partialUpdateOne = (req, res) => {
     console.log("Partial Update One Team Controller");
     teamUpdate = (req, res, team, response) => {
-        if (req.body.name) { team.name = req.body.name; }
-        if (req.body.country) { team.country = req.body.country; }
-        if (req.body.creation_year) { team.creation_year = req.body.creation_year; }
-        if (req.body.creation_month) {team.creation_month = req.body.creation_month;}
-        if (req.body.creation_day) { team.creation_day = req.body.creation_day; }
-        if (req.body.members) { team.members = req.body.members; }
+        if (req.body.name) {
+            team.name = req.body.name;
+        }
+        if (req.body.country) {
+            team.country = req.body.country;
+        }
+        if (req.body.creation_year) {
+            team.creation_year = parseInt(req.body.creation_year);
+        }
+        if (req.body.creation_month) {
+            team.creation_month = parseInt(req.body.creation_month);
+        }
+        if (req.body.creation_day) {
+            team.creation_day = parseInt(req.body.creation_day);
+        }
+        // if (req.body.members.name) {
+        //     team.members.name = req.body.members.name;
+        // }
+        // if (req.body.members.age) {
+        //     team.members.age = parseInt(req.body.members.age);
+        // }
+        // if (req.body.members.number_olympic_participation) {
+        //     team.members.number_olympic_participation =
+        //         parseInt(req.body.members.number_olympic_participation);
+        // }
         team.save((err, updatedTeam) => {
             if (err) {
                 response.status = 500;
@@ -120,7 +147,10 @@ const fullUpdateOne = (req, res) => {
         team.creation_year = parseInt(req.body.creation_year);
         team.creation_month = parseInt(req.body.creation_month);
         team.creation_day = parseInt(req.body.creation_day);
-        team.members = {};
+        // team.members.name = req.body.members.name;
+        // team.members.age = parseInt(req.body.members.age);
+        // team.members.number_olympic_participation =
+        //     parseInt(req.body.members.number_olympic_participation);
         team.save((err, updatedTeam) => {
             if (err) {
                 response.status = 500;

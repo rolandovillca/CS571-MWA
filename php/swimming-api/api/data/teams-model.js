@@ -2,6 +2,16 @@ const mongoose = require("mongoose");
 // import mongoose from "mongoose";
 // const { Schema } = mongoose;
 
+const membersSchema = mongoose.Schema({
+    name: {
+        type: String
+    },
+    age: {
+        type: Number
+    },
+    number_olympic_participation: { type: Number }
+});
+
 const teamSchema = mongoose.Schema({
     name: {
         type: String,
@@ -20,9 +30,7 @@ const teamSchema = mongoose.Schema({
     creation_day: {
         type: Number
     },
-    members: {
-        type: {}
-    }
+    members: [membersSchema]
 });
 
 mongoose.model(process.env.TEAM_MODEL, teamSchema, "teams");

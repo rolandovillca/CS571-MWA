@@ -8,7 +8,7 @@ const membersSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    numberOlympicParticipation: {
+    number_olympic_participation: {
         type: Number
     }
 });
