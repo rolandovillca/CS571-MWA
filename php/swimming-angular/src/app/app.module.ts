@@ -14,6 +14,7 @@ import { EditTeamComponent } from './edit-team/edit-team.component';
 import { DeleteTeamComponent } from './delete-team/delete-team.component';
 import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       {
         path: "", component: HomeComponent
@@ -40,10 +42,10 @@ import { ErrorPageComponent } from './error-page/error-page.component';
         path: "teams/list", component: ListTeamComponent
       },
       {
-        path: "teams/:teamId", component: GetTeamComponent
+        path: "teams/add", component: AddTeamComponent
       },
       {
-        path: "teams/add", component: AddTeamComponent
+        path: "teams/get/:teamId", component: GetTeamComponent
       },
       {
         path: "teams/delete/:teamId", component: DeleteTeamComponent

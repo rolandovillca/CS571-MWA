@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Team, TeamsService } from '../teams.service';
 
 @Component({
@@ -19,4 +20,16 @@ export class ListTeamComponent implements OnInit {
     });
   }
 
+  deleteTeam(team:Team) {
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", team._id);
+    this._teamsService.deleteTeamById(team._id).subscribe((resp) => {
+      console.log(resp);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  edit() {
+    
+  }
 }

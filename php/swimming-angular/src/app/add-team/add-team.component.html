@@ -1,1 +1,90 @@
-<p>add-team works!</p>
+<form #addTeamForm="ngForm" (ngSubmit)="addTeam(addTeamForm)">
+    <h3>Team Details</h3>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label>Name</label>
+            <input type="text" #name (ngModel)="name" name="name" id="name" class="form-control" placeholder="Team Name">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Country</label>
+            <input type="text" #country (ngModel)="country" name="country" id="country" class="form-control" placeholder="Country Name">
+        </div>
+        <div class="form-group col-md-1">
+            <label>Year</label>
+            <input type="text" #creation_year (ngModel)="creation_year" name="creation_year" id="creation_year" class="form-control" placeholder="Year">
+        </div>
+        <div class="form-group col-md-1">
+            <label>Month</label>
+            <input type="text" #creation_month (ngModel)="creation_month" name="creation_month" id="creation_month" class="form-control" placeholder="Month">
+        </div>
+        <div class="form-group col-md-1">
+            <label>Day</label>
+            <input type="text" #creation_day (ngModel)="creation_day" name="creation_day" id="creation_day" class="form-control" placeholder="Day">
+        </div>
+    </div>
+    <h3>Members</h3>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <input type="text" #member_name (ngModel)="member_name" name="member_name" id="member_name" class="form-control" placeholder="Athlete Name">
+        </div>
+        <div class="form-group col-md-1">
+            <input type="text" #member_age (ngModel)="member_age" name="member_age" id="member_age" class="form-control" placeholder="Age">
+        </div>
+        <div class="form-group col-md-2">
+            <input type="text" #member_olympics_participation (ngModel)="member_olympics_participation" name="member_olympics_participation" id="member_olympics_participation" class="form-control" id="created_year" placeholder="Number Olympics">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Team</button>
+</form>
+
+
+
+<!-- <form #addTeamForm="ngForm" (ngSubmit)="addTeam(addTeamForm)">
+    <div>
+        <div style="width: 40%; height: 100px; float: left;">
+            <div class="form-group">
+                <label>Team Name</label>
+                <input type="text" #name (ngModel)="name" name="name" id="name" class="form-control"
+                    placeholder="Type Team Name">
+            </div>
+            <div class="form-group">
+                <label>Country</label>
+                <input type="text" #country (ngModel)="country" name="country" id="country" class="form-control"
+                    placeholder="Country">
+            </div>
+            <div class="form-group">
+                <label>Creation Year</label>
+                <input type="text" #creation_year (ngModel)="creation_year" name="creation_year" id="creation_year"
+                    class="form-control" placeholder="Creation Year">
+            </div>
+            <div class="form-group">
+                <label>Creation Month</label>
+                <input type="text" #creation_month (ngModel)="creation_month" name="creation_month" id="creation_month"
+                    class="form-control" placeholder="Creation Month">
+            </div>
+            <div class="form-group">
+                <label>Creation Day</label>
+                <input type="text" #creation_day (ngModel)="creation_day" name="creation_day" id="creation_day"
+                    class="form-control" placeholder="Creation Day">
+            </div>
+        </div>
+        <div style="width: 50%; height: 100px; float: right;">
+            <div class="form-group">
+                <label>Athete Name</label>
+                <input type="text" #athletename (ngModel)="athletename" name="athletename" id="athletename"
+                    class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label>Athlete Age</label>
+                <input type="text" #athleteage (ngModel)="athleteage" name="athleteage" id="athleteage"
+                    class="form-control" placeholder="Age">
+            </div>
+            <div class="form-group">
+                <label>Olympic Participations</label>
+                <input type="text" #athleteolympics (ngModel)="athleteolympics" name="athleteolympics"
+                    id="athleteolympics" class="form-control" placeholder="Number of Olympic Participations">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Team</button>
+        </div>
+    </div>
+</form> -->

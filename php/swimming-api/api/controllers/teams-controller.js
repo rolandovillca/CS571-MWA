@@ -36,21 +36,32 @@ const getOne = (req, res) => {
 const addOne = (req, res) => {
     console.log("Adding team");
     const newMembers = [];
-    for (const member of req.body.members) {
-        newMembers.push({
-            name: member.name,
-            age: member.age,
-            number_olympic_participation: member.number_olympic_participation
-        });
+    if (req.body.members) {
+        for (const member of req.body.members) {
+            newMembers.push({
+                name: member.name,
+                age: member.age,
+                number_olympic_participation: member.number_olympic_participation
+            });
+        }
     }
-    const newTeam = {
-        name: req.body.name,
-        country: req.body.country,
-        creation_year: parseInt(req.body.creation_year),
-        creation_month: parseInt(req.body.creation_month),
-        creation_day: parseInt(req.body.creation_day),
-        members: newMembers
-    };
+    console.log(".....................", req.body.name);
+    console.log(".....................", req.body.country);
+    console.log(".....................", req.body.creation_year);
+    console.log(".....................", req.body.creation_month);
+    console.log(".....................", req.body.creation_day);
+    const newTeam = {};
+    newTeam.name = req.body.name;
+    newTeam.country = req.body.country;
+    if (req.body.creation_year) {
+        newTeam.creation_year = parseInt(req.body.creation_year);
+    }
+    if (req.body.creation_year) {
+        newTeam.creation_year = parseInt(req.body.creation_month);
+    }
+    if (req.body.creation_year) {
+        newTeam.creation_year = parseInt(req.body.creation_day);
+    }
     Team.create(newTeam, (err, team) => {
         const response = { status: 200, message: team };
         if (err) {

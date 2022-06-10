@@ -11,12 +11,33 @@ export class TeamsService {
 
   constructor(private http: HttpClient) { }
 
-  getTeams(): Observable<Team[]> {
+  public getTeams(): Observable<Team[]> {
     return this.http.get<Team[]>(this.baseUrl + "/all");
+    // const url = this.baseUrl + "/all";
+    // return this.http.get(url).toPromise()
+    //   .then(response => response as Team[])
+    //   .catch(this._handleError);
   }
 
-  getTeamById(id: string): Observable<Team> {
+  public getTeamById(id: string): Observable<Team> {
     return this.http.get<Team>(this.baseUrl + "/" + id);
+  }
+
+  private _handleError(err: any): Promise<any> {
+    console.log("Service Error", err);
+    return Promise.reject(err.message || err);
+  }
+
+  public addTeam(data:any): Observable<Team> {
+    return this.http.post<Team>(this.baseUrl + "/add", data);
+  }
+
+  public deleteTeamById(id: string): Observable<Team> {
+    return this.http.delete<Team>(this.baseUrl + "/" + id);
+  }
+
+  public updateTeamById(id: string, data:any): Observable<Team> {
+    return this.http.put<Team>(this.baseUrl + "/" + id, data);
   }
 }
 
@@ -27,9 +48,10 @@ export class Member {
   #number_olympic_participation!: number;
   constructor() { }
 
-  get _id() { return this.#_id;}
-  get name() { return this.#name;}
-  get age() { return this.#age;}
+  get _id() { return this.#_id; }
+  get name() { return this.#name; }
+  get age() { return this.#age; }
+  get number_olympic_participation() { return this.#number_olympic_participation; }
 }
 
 export class Team {

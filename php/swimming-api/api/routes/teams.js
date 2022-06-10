@@ -8,20 +8,20 @@ router.use((req, res, next) => {
     next();
 });
 
-router.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", process.env.ANGULAR_URL);
-    res.header("Access-Control-Allow-Headers",
-                "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// router.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", process.env.ANGULAR_URL);
+//     res.header("Access-Control-Allow-Headers",
+//                 "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 router.route("/teams/all").get(teamsController.getAll);
+router.route("/teams/add").post(teamsController.addOne);
 
 router.route("/teams/:teamId")
     .get(teamsController.getOne)
     .put(teamsController.fullUpdateOne)
     .delete(teamsController.deleteOne);
 
-router.route("/teams/add").post(teamsController.addOne);
 
 module.exports = router;

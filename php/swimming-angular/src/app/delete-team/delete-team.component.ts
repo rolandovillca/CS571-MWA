@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-team',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteTeamComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router:Router) { }
 
   ngOnInit(): void {
+    this._router.navigate(['teams/list']);
   }
-
 }
