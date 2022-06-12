@@ -14,14 +14,13 @@ export class ListTeamComponent implements OnInit {
   constructor(private _teamsService: TeamsService) { }
 
   ngOnInit(): void {
-    console.log("Subscribing ALL");
+    console.log("Subscribing All Teams");
     this._teamsService.getTeams().subscribe(data => {
       this.teams = data;
     });
   }
 
   deleteTeam(team:Team) {
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", team._id);
     this._teamsService.deleteTeamById(team._id).subscribe((resp) => {
       console.log(resp);
     }, (err) => {

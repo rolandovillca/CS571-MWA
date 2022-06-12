@@ -7,7 +7,7 @@
             <th scope="col">Creation Month</th>
             <th scope="col">Creation Day</th>
             <!-- <th scope="col">Team Members</th> -->
-            <th scope="col">Details</th>
+            <th scope="col">Members</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
@@ -15,14 +15,15 @@
     <tbody>
         <tr *ngFor="let team of teams">
             <td>{{team.name}}</td>
-            <td>{{team.country}}</td>
+            <!-- <td>{{team.country}}</td> -->
+            <td><img src="../../assets/images/country-flags/{{team.country}}.jpg" alt="" width="50"></td>
             <td>{{team.creation_year}}</td>
             <td>{{team.creation_month}}</td>
             <td>{{team.creation_day}}</td>
             <!-- <td>{{team.members}}</td> -->
             <td>
                 <a routerLink="/teams/get/{{team._id}}"><button type="button"
-                        class="btn btn-primary">Details</button></a>
+                        class="btn btn-primary">Members</button></a>
             </td>
             <td>
                 <a routerLink="/teams/edit/{{team._id}}">

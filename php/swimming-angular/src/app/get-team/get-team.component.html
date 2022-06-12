@@ -2,41 +2,96 @@
     {{item.value}}
 </div> -->
 
-<ul class="list-group">
-    <li *ngFor="let item of team.members" class="list-group-item">
-        {{item.name}}
-        {{item.age}}
-        {{item.number_olympic_participation}}
-        <!-- {{team.name}} -->
-    </li>
-</ul>
+<!-- {{team.name}} -->
 
-<form #getForm="ngForm">
+<!-- <ul class="list-group">
+    <li *ngFor="let member of members" class="list-group-item">
+        {{member.name}}
+        {{member.age}}
+        {{member.number_olympic_participation}}
+    </li>
+</ul> -->
+
+<form #getForm="ngForm" (ngSubmit)="onSubmit(getForm)">
+    <h3>Team Information</h3>
     <div class="form-row">
-        <!-- <div class="col">
-            <input type="text" #name [(ngModel)]="team.name" name="name" id="name" class="form-control" placeholder=""/>
-        </div> -->
-        <!-- <div class="col">
-            <input type="text" #country [(ngModel)]="team.country" name="country" id="country" class="form-control" placeholder="">
+        <div class="form-group col-md-2">
+            <label for="">Team Name</label>
+            <input type="text" #name [(ngModel)]="team.name" name="name" id="name" class="form-control"
+                placeholder="" />
         </div>
-        <div class="col">
-            <input type="text" #creation_year [(ngModel)]="team.creation_year" name="year" id="year" class="form-control" placeholder="">
+        <div class="form-group col-md-2">
+            <label for="">Country</label>
+            <select #country [(ngModel)]="team.country" name="country" id="country" class="form-select"
+                aria-label="Default select example">
+                <option selected>Choose country</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Australia">Australia</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Bulgaria">Bulgaria</option>
+                <option value="Canada">Canada</option>
+                <option value="China">China</option>
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Iran">Iran</option>
+                <option value="Italy">Italy</option>
+                <option value="Japan">Japan</option>
+                <option value="Nethrelands">Nethrelands</option>
+                <option value="Poland">Poland</option>
+                <option value="Serbia">Serbia</option>
+                <option value="Slovenia">Slovenia</option>
+                <option value="United States">United States</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-1">
+            <label for="">Year</label>
+            <input type="text" #creation_year [(ngModel)]="team.creation_year" name="year" id="year"
+                class="form-control" placeholder="">
         </div>
         <div class="form-group col-md-1">
-            <input type="text" #creation_month [(ngModel)]="team.creation_month" name="month" id="month" class="form-control" placeholder="">
+            <label for="">Month</label>
+            <input type="text" #creation_month [(ngModel)]="team.creation_month" name="month" id="month"
+                class="form-control" placeholder="">
         </div>
         <div class="form-group col-md-1">
-            <input type="text" #creation_day [(ngModel)]="team.creation_day" name="day" id="day" class="form-control" placeholder="">
+            <label for="">Day</label>
+            <input type="text" #creation_day [(ngModel)]="team.creation_day" name="day" id="day" class="form-control"
+                placeholder="">
+        </div>
+    </div>
+    <div class="form-row">
+        <img src="../../assets/images/country-flags/{{team.country}}.jpg" alt="aaaaa">
+    </div>
+    <h3>Team Members</h3>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="">Member Name</label>
         </div>
         <div class="form-group col-md-1">
-            <input type="text" #member_name [(ngModel)]="member_name" name="member_name" id="member_name" class="form-control" placeholder="">
+            <label for="">Age</label>
         </div>
         <div class="form-group col-md-1">
-            <input type="text" #member_age [(ngModel)]="member_age" name="age" id="age" class="form-control" placeholder="">
+            <label for="">Olympics</label>
         </div>
-        <div class="form-group col-md-1">
-            <input type="text" #member_olympics_participation [(ngModel)]="member_olympics_participation" name="olympics" id="olympics" class="form-control" placeholder="">
-        </div> -->
+    </div>
+    <div *ngFor="let member of members">
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <input type="text" #name [(ngModel)]="member.name" name="name" id="name" class="form-control"
+                    placeholder="">
+            </div>
+            <div class="form-group col-md-1">
+                <input type="text" #age [(ngModel)]="member.age" name="age" id="age" class="form-control"
+                    placeholder="">
+            </div>
+            <div class="form-group col-md-1">
+                <input type="text" #number_olympic_participation [(ngModel)]="member.number_olympic_participation"
+                    name="number_olympic_participation" id="number_olympic_participation" class="form-control"
+                    placeholder="">
+            </div>
+        </div>
     </div>
 </form>
+
 <button type="button" routerLink="/teams/list" class="btn btn-primary">Back List Teams</button>

@@ -28,7 +28,7 @@ export class TeamsService {
     return Promise.reject(err.message || err);
   }
 
-  public addTeam(data:any): Observable<Team> {
+  public addTeam(data: any): Observable<Team> {
     return this.http.post<Team>(this.baseUrl + "/add", data);
   }
 
@@ -36,9 +36,10 @@ export class TeamsService {
     return this.http.delete<Team>(this.baseUrl + "/" + id);
   }
 
-  public updateTeamById(id: string, data:any): Observable<Team> {
+  public updateTeamById(id: string, data: any): Observable<Team> {
     return this.http.put<Team>(this.baseUrl + "/" + id, data);
   }
+
 }
 
 export class Member {
@@ -51,7 +52,15 @@ export class Member {
   get _id() { return this.#_id; }
   get name() { return this.#name; }
   get age() { return this.#age; }
-  get number_olympic_participation() { return this.#number_olympic_participation; }
+  get number_olympic_participation() {
+    return this.#number_olympic_participation;
+  }
+
+  set name(name) { this.name = name; }
+  set age(age) { this.age = age; }
+  set number_olympic_participation(value) {
+    this.number_olympic_participation = value;
+  }
 }
 
 export class Team {
@@ -71,4 +80,11 @@ export class Team {
   get creation_month() { return this.#creation_month; }
   get creation_day() { return this.#creation_day; }
   get members() { return this.#members; }
+
+  set name(value) { this.#name = value; }
+  set country(value) { this.#country = value; }
+  set creation_year(value) { this.#creation_year = value; }
+  set creation_month(value) { this.#creation_month = value; }
+  set creation_day(value) { this.#creation_day = value; }
+  set members(value) { this.members = value }
 }

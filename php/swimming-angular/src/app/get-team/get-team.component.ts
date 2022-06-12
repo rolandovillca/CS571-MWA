@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Team, TeamsService } from '../teams.service';
+import { Member, Team, TeamsService } from '../teams.service';
 
 @Component({
   selector: 'app-get-team',
@@ -9,10 +10,11 @@ import { Team, TeamsService } from '../teams.service';
 })
 export class GetTeamComponent implements OnInit {
 
-  team:Team = {} as Team;
+  team: Team = {} as Team;
+  members: Member[] = [];
 
-  constructor(private _teamsService:TeamsService,
-    private _route:ActivatedRoute) { }
+  constructor(private _teamsService: TeamsService,
+    private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const teamId = this._route.snapshot.params["teamId"];
@@ -20,6 +22,11 @@ export class GetTeamComponent implements OnInit {
       .getTeamById(teamId)
       .subscribe((result) => {
         this.team = result;
+        this.members = result.members;
       });
+  }
+
+  onSubmit(form: NgForm) { 
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   }
 }

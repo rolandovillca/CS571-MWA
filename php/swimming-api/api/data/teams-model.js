@@ -3,12 +3,8 @@ const mongoose = require("mongoose");
 // const { Schema } = mongoose;
 
 const membersSchema = mongoose.Schema({
-    name: {
-        type: String
-    },
-    age: {
-        type: Number
-    },
+    name: { type: String },
+    age: { type: Number },
     number_olympic_participation: { type: Number }
 });
 
