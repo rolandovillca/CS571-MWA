@@ -15,6 +15,8 @@ import { DeleteTeamComponent } from './delete-team/delete-team.component';
 import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { FormsModule } from '@angular/forms';
     EditTeamComponent,
     DeleteTeamComponent,
     ErrorPageComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
