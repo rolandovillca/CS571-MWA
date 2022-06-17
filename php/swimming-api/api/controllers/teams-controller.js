@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const Team = mongoose.model(process.env.TEAM_MODEL);
 
+const SUCCESS_STATUS_CODE = process.env.SUCCESS_STATUS_CODE;
+const CREATED_STATUS_CODE = process.env.CREATED_STATUS_CODE;
+const SERVER_ERROR_STATUS_CODE = process.env.SERVER_ERROR_STATUS_CODE;
+const NOT_FOUND_STATUS_CODE = process.env.NOT_FOUND_STATUS_CODE;
+const NOT_FOUND_MSG = process.env.NOT_FOUND_MSG;
+
 const getAll = (req, res) => {
     let offset = parseInt(process.env.DEFAULT_FIND_OFFSET);
     let count = parseInt(process.env.DEFAULT_FIND_COUNT);
@@ -10,27 +16,24 @@ const getAll = (req, res) => {
     if (req.query && req.query.count) {
         count = parseInt(req.query.count, 10);
     }
-    // Team.find().exec((error, teams) => {
-    //     console.log("ALL TEAMS...");
-    //     res.json(teams);
-    // });
-    Team.find().skip(offset).limit(count).exec((err, teams) => {
-        console.log("Found teams");
-        res.status(200).json(teams);
-    });
+    Team.find().skip(offset).limit(count).exec()
+        .then((teams) => { res.status(SUCCESS_STATUS_CODE).json(teams) })
+        .catch((err) => { res.status(SUCCESS_STATUS_CODE).json(err) });
 }
 
 const getOne = (req, res) => {
     const teamId = req.params.teamId;
-    Team.findById(teamId).exec((err, team) => {
-        const response = { status: 200, message: team }
-        if (err) {
-            console.log("Error finding team: " + err);
-            response.status = 500;
-            response.message = err;
-        }
-        res.status(response.status).json(response.message);
-    });
+    Team.findById(teamId).exec()
+        .then((team) => {
+            if (team) {
+                res.status(SUCCESS_STATUS_CODE).json(team);
+            } else {
+                res.status(NOT_FOUND_STATUS_CODE).json(NOT_FOUND_MSG);
+            }
+        })
+        .catch((err) => {
+            res.status(SERVER_ERROR_STATUS_CODE).json(err);
+        });
 }
 
 const addOne = (req, res) => {
@@ -63,53 +66,44 @@ const addOne = (req, res) => {
     if (req.body.creation_day) {
         newTeam.creation_day = parseInt(req.body.creation_day);
     }
-    Team.create(newTeam, (err, team) => {
-        const response = { status: 200, message: team };
-        if (err) {
-            console.log("Error saving team: " + err);
-            response.status = 500;
-            response.message = err;
-        }
-        res.status(response.status).json(response.message);
-    });
+    Team.create(newTeam)
+        .then((team) => {
+            res.status(CREATED_STATUS_CODE).json(team);
+        })
+        .catch((err) => {
+            res.status(SERVER_ERROR_STATUS_CODE).json(err);
+        });
 }
 
 const deleteOne = function (req, res) {
     const teamId = req.params.teamId;
-    Team.findByIdAndDelete(teamId).exec((err, deletedTeam) => {
-        const response = { status: 204, message: deletedTeam };
-        if (err) {
-            console.log("Error finding team");
-            response.status = 500;
-            response.message = err;
-        } else if (!deletedTeam) {
-            console.log("Team id not found");
-            response.status = 404;
-            response.message = {
-                "message": "Team ID not found"
-            };
-        }
-        res.status(response.status).json(response.message);
-    });
+    Team.findByIdAndDelete(teamId).exec()
+        .then((deletedTeam) => {
+            if (deletedTeam) {
+                res.status(NO_CONTENT_STATUS_CODE).json(deletedTeam);
+            } else {
+                res.status(NOT_FOUND_STATUS_CODE).json(NOT_FOUND_MSG)
+            }
+        })
+        .catch((err) => {
+            res.status(SERVER_ERROR_STATUS_CODE).json(err);
+        });
 }
 
 const _updateOne = (req, res, updateTeamCallback) => {
     console.log("Update One Team Controller");
     const teamId = req.params.teamId;
-    Team.findById(teamId).exec((err, team) => {
-        const response = { status: 200, message: team };
-        if (err) {
-            console.log("Error finding team");
-            response.status = 500;
-            response.message = err;
-        }
-        updateTeamCallback(req, res, team, response);
-        // if (response.status !== 204) {
-        //     res.status(response.status).json(response.message);
-        // } else {
-        //     updateTeamCallback(req, res, team, response);
-        // }
-    });
+    Team.findById(teamId).exec()
+        .then((team) => {
+            if (team) {
+                updateTeamCallback(req, res, team, response);
+            } else {
+                res.status(NOT_FOUND_STATUS_CODE).json(NOT_FOUND_MSG);
+            }
+        })
+        .catch((err) => {
+            res.status(SERVER_ERROR_STATUS_CODE).json(err);
+        });
 }
 
 const partialUpdateOne = (req, res) => {
@@ -142,7 +136,7 @@ const partialUpdateOne = (req, res) => {
         // }
         team.save((err, updatedTeam) => {
             if (err) {
-                response.status = 500;
+                response.status = SERVER_ERROR_STATUS_CODE;
                 response.message = err;
             }
             res.status(response.status).json(response.message);
@@ -163,13 +157,13 @@ const fullUpdateOne = (req, res) => {
         // team.members.age = parseInt(req.body.members.age);
         // team.members.number_olympic_participation =
         //     parseInt(req.body.members.number_olympic_participation);
-        team.save((err, updatedTeam) => {
-            if (err) {
-                response.status = 500;
-                response.message = err;
-            }
-            res.status(response.status).json(response.message);
-        });
+        team.save()
+            .then((updatedTeam) => {
+                res.status(SUCCESS_STATUS_CODE).json(updatedTeam);
+            })
+            .catch((err) => {
+                res.status(SERVER_ERROR_STATUS_CODE).json(err);
+            });
     }
     _updateOne(req, res, teamUpdate);
 }
