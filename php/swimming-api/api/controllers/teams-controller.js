@@ -75,7 +75,7 @@ const addOne = (req, res) => {
         });
 }
 
-const deleteOne = function (req, res) {
+const deleteOne = (req, res) => {
     const teamId = req.params.teamId;
     Team.findByIdAndDelete(teamId).exec()
         .then((deletedTeam) => {

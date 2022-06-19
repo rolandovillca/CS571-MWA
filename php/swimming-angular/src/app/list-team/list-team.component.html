@@ -1,3 +1,9 @@
+<h3>Swimming Teams</h3>
+<div class="search">
+    <!-- <h3>Search by Team Name : </h3> -->
+    <input type="text" [(ngModel)]="term" class="searchTerm" placeholder="Search">
+</div>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -13,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let team of teams">
+        <tr *ngFor="let team of teams | filter:term">
             <td>{{team.name}}</td>
             <!-- <td>{{team.country}}</td> -->
             <td><img src="../../assets/images/country-flags/{{team.country}}.jpg" alt="" width="50"></td>

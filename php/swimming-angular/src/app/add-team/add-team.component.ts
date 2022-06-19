@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TeamsService } from '../teams.service';
-import { Team } from '../teams.service';
+import { Team } from '../models/team-module';
 
 @Component({
   selector: 'app-add-team',

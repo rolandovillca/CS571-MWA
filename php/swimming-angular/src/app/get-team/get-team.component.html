@@ -22,8 +22,7 @@
         </div>
         <div class="form-group col-md-2">
             <label for="">Country</label>
-            <select #country [(ngModel)]="team.country" name="country" id="country" class="form-select"
-                aria-label="Default select example">
+            <select #country [(ngModel)]="team.country" name="country" id="country" class="form-select" aria-label="Default select example">
                 <option selected>Choose country</option>
                 <option value="Argentina">Argentina</option>
                 <option value="Australia">Australia</option>
@@ -75,20 +74,18 @@
             <label for="">Olympics</label>
         </div>
     </div>
-    <div *ngFor="let member of members">
-        <div class="form-row">
+    <div >
+        <div class="form-row" *ngFor="let member of team.members; let i = index">
             <div class="form-group col-md-5">
-                <input type="text" #name [(ngModel)]="member.name" name="name" id="name" class="form-control"
-                    placeholder="">
+                <input type="text" #name [(ngModel)]="member.name" name="member{{i}}" id="member{{i}}" class="form-control" placeholder="">
             </div>
             <div class="form-group col-md-1">
-                <input type="text" #age [(ngModel)]="member.age" name="age" id="age" class="form-control"
-                    placeholder="">
+                <input type="text" #age [(ngModel)]="member.age" name="age{{i}}" id="age{{i}}" class="form-control" placeholder="">
             </div>
             <div class="form-group col-md-1">
                 <input type="text" #number_olympic_participation [(ngModel)]="member.number_olympic_participation"
-                    name="number_olympic_participation" id="number_olympic_participation" class="form-control"
-                    placeholder="">
+                    name="number_olympic_participation{{i}}" id="number_olympic_participation{{i}}" 
+                    class="form-control" placeholder="">
             </div>
         </div>
     </div>

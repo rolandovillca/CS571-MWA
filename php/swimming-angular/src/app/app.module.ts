@@ -12,11 +12,12 @@ import { GetTeamComponent } from './get-team/get-team.component';
 import { AddTeamComponent } from './add-team/add-team.component';
 import { EditTeamComponent } from './edit-team/edit-team.component';
 import { DeleteTeamComponent } from './delete-team/delete-team.component';
-import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
+// import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,8 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
     RouterModule.forRoot([
       {
         path: "", component: HomeComponent

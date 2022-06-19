@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Member, Team, TeamsService } from '../teams.service';
+import { TeamsService } from '../teams.service';
+import { Team, Member } from '../models/team-module';
 
 @Component({
   selector: 'app-get-team',
@@ -11,7 +12,7 @@ import { Member, Team, TeamsService } from '../teams.service';
 export class GetTeamComponent implements OnInit {
 
   team: Team = {} as Team;
-  members: Member[] = [];
+  // members: Member[] = [];
 
   constructor(private _teamsService: TeamsService,
     private _route: ActivatedRoute) { }
@@ -22,11 +23,11 @@ export class GetTeamComponent implements OnInit {
       .getTeamById(teamId)
       .subscribe((result) => {
         this.team = result;
-        this.members = result.members;
+        // this.members = result.members;
       });
   }
 
   onSubmit(form: NgForm) { 
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    console.log("...");
   }
 }
